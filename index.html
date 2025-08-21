@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zwivhuya Vision Madzivhandila | Full Stack Developer</title>
     <meta name="description" content="Portfolio of Zwivhuya Vision Madzivhandila - Junior Full Stack Developer specializing in React.js, Node.js, and modern web technologies.">
-    <link rel="icon" href="zee.jpg" type="image/svg+xml">
+    <link rel="icon" href="zee.jpg" type="image/jpg">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -520,13 +520,6 @@
                 height: 60px;
             }
         }
-
-        /* Fix for Intersection Observer animated elements */
-        .animated-element {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
     </style>
 </head>
 <body class="font-body bg-background text-foreground">
@@ -557,10 +550,12 @@
                     <a href="#about" class="text-foreground hover:text-primary transition-colors duration-300">About</a>
                     <a href="#skills" class="text-foreground hover:text-primary transition-colors duration-300">Skills</a>
                     <a href="#projects" class="text-foreground hover:text-primary transition-colors duration-300">Projects</a>
+                    <!-- Added Documents navigation link -->
+                    <a href="#documents" class="text-foreground hover:text-primary transition-colors duration-300">Documents</a>
                     <a href="#contact" class="text-foreground hover:text-primary transition-colors duration-300">Contact</a>
                 </div>
                 
-                <button class="md:hidden text-foreground" id="mobile-menu-btn" aria-label="Toggle mobile menu">
+                <button class="md:hidden text-foreground" id="mobile-menu-btn">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -572,6 +567,8 @@
                     <a href="#about" class="text-foreground hover:text-primary transition-colors duration-300">About</a>
                     <a href="#skills" class="text-foreground hover:text-primary transition-colors duration-300">Skills</a>
                     <a href="#projects" class="text-foreground hover:text-primary transition-colors duration-300">Projects</a>
+                    <!-- Added Documents navigation link to mobile menu -->
+                    <a href="#documents" class="text-foreground hover:text-primary transition-colors duration-300">Documents</a>
                     <a href="#contact" class="text-foreground hover:text-primary transition-colors duration-300">Contact</a>
                 </div>
             </div>
@@ -615,7 +612,7 @@
     <!-- About Section -->
     <section id="about" class="py-20 px-6 bg-muted">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 animated-element">
+            <div class="text-center mb-16 animate-slide-up">
                 <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">About Me</h2>
                 <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
                     Passionate about creating beautiful, functional, and user-centered digital experiences
@@ -623,7 +620,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animated-element">
+                <div class="animate-slide-up">
                     <h3 class="font-heading font-semibold text-2xl text-foreground mb-6">Passionate Developer</h3>
                     <p class="text-muted-foreground mb-6 leading-relaxed">
                         I'm a dedicated junior full stack developer with a passion for creating beautiful, 
@@ -638,7 +635,7 @@
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-6 animated-element">
+                <div class="grid grid-cols-2 gap-6 animate-slide-up">
                     <div class="bg-card p-6 rounded-lg hover-lift">
                         <i class="fab fa-react text-3xl text-primary mb-4"></i>
                         <h4 class="font-heading font-semibold text-lg text-card-foreground mb-2">Frontend</h4>
@@ -667,7 +664,7 @@
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 animated-element">
+            <div class="text-center mb-16 animate-slide-up">
                 <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Skills & Expertise</h2>
                 <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
                     Technologies and tools I use to build innovative solutions
@@ -676,7 +673,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Frontend Development -->
-                <div class="bg-card p-8 rounded-lg hover-lift animated-element">
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-laptop-code text-3xl text-primary mr-4"></i>
                         <h3 class="font-heading font-semibold text-xl text-card-foreground">Frontend Development</h3>
@@ -691,7 +688,7 @@
                 </div>
                 
                 <!-- Backend Development -->
-                <div class="bg-card p-8 rounded-lg hover-lift animated-element">
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-server text-3xl text-primary mr-4"></i>
                         <h3 class="font-heading font-semibold text-xl text-card-foreground">Backend Development</h3>
@@ -706,7 +703,7 @@
                 </div>
                 
                 <!-- Mobile Development -->
-                <div class="bg-card p-8 rounded-lg hover-lift animated-element">
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-mobile-alt text-3xl text-primary mr-4"></i>
                         <h3 class="font-heading font-semibold text-xl text-card-foreground">Mobile Development</h3>
@@ -720,7 +717,7 @@
                 </div>
                 
                 <!-- Database Management -->
-                <div class="bg-card p-8 rounded-lg hover-lift animated-element">
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-database text-3xl text-primary mr-4"></i>
                         <h3 class="font-heading font-semibold text-xl text-card-foreground">Database Management</h3>
@@ -734,7 +731,7 @@
                 </div>
                 
                 <!-- DevOps & Tools -->
-                <div class="bg-card p-8 rounded-lg hover-lift animated-element">
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-tools text-3xl text-primary mr-4"></i>
                         <h3 class="font-heading font-semibold text-xl text-card-foreground">DevOps & Tools</h3>
@@ -748,7 +745,7 @@
                 </div>
                 
                 <!-- Soft Skills -->
-                <div class="bg-card p-8 rounded-lg hover-lift animated-element">
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-brain text-3xl text-primary mr-4"></i>
                         <h3 class="font-heading font-semibold text-xl text-card-foreground">Soft Skills</h3>
@@ -767,7 +764,7 @@
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6 bg-muted">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 animated-element">
+            <div class="text-center mb-16 animate-slide-up">
                 <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Featured Projects</h2>
                 <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
                     Showcasing my development journey through real-world applications
@@ -776,7 +773,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- SANDF Gaming Website -->
-                <div class="bg-card rounded-lg overflow-hidden hover-lift animated-element">
+                <div class="bg-card rounded-lg overflow-hidden hover-lift animate-slide-up">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm font-semibold">🌟 Latest</span>
@@ -793,10 +790,10 @@
                             <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Email JS</span>
                         </div>
                         <div class="flex gap-3">
-                            <a href="https://sandf-c7d24.firebaseapp.com" target="_blank" rel="noopener" class="text-primary hover:text-secondary transition-colors text-sm">
+                            <a href="https://sandf-c7d24.firebaseapp.com" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
                                 <i class="fas fa-external-link-alt mr-1"></i> Live Demo
                             </a>
-                            <a href="https://github.com/Maybach-Zee/SANDF-Clan.git" target="_blank" rel="noopener" class="text-primary hover:text-secondary transition-colors text-sm">
+                            <a href="https://github.com/Maybach-Zee/SANDF-Clan.git" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
                                 <i class="fab fa-github mr-1"></i> Code
                             </a>
                         </div>
@@ -804,7 +801,7 @@
                 </div>
                 
                 <!-- Premium Watch Collection App -->
-                <div class="bg-card rounded-lg overflow-hidden hover-lift animated-element">
+                <div class="bg-card rounded-lg overflow-hidden hover-lift animate-slide-up">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">Mobile</span>
@@ -820,10 +817,10 @@
                             <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Firebase</span>
                         </div>
                         <div class="flex gap-3">
-                            <a href="https://drive.google.com/file/d/1fkLAZ4qhyQes9rBv28bDrV0JWrE-UrkW/view?usp=share_link" target="_blank" rel="noopener" class="text-primary hover:text-secondary transition-colors text-sm">
+                            <a href="https://drive.google.com/file/d/1fkLAZ4qhyQes9rBv28bDrV0JWrE-UrkW/view?usp=share_link" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
                                 <i class="fab fa-android mr-1"></i> Download APK
                             </a>
-                            <a href="https://github.com/Maybach-Zee/Premium-Watch-Android-Application.git" target="_blank" rel="noopener" class="text-primary hover:text-secondary transition-colors text-sm">
+                            <a href="https://github.com/Maybach-Zee/Premium-Watch-Android-Application.git" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
                                 <i class="fab fa-github mr-1"></i> Code
                             </a>
                         </div>
@@ -831,7 +828,7 @@
                 </div>
                 
                 <!-- BirdQuest App -->
-                <div class="bg-card rounded-lg overflow-hidden hover-lift animated-element">
+                <div class="bg-card rounded-lg overflow-hidden hover-lift animate-slide-up">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">Mobile</span>
@@ -847,10 +844,10 @@
                             <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Mapbox</span>
                         </div>
                         <div class="flex gap-3">
-                            <a href="https://drive.google.com/file/d/1PcWa-FOWVf2U61NMMdSPcieO7ycWwGjh/view?usp=share_link" target="_blank" rel="noopener" class="text-primary hover:text-secondary transition-colors text-sm">
+                            <a href="https://drive.google.com/file/d/1PcWa-FOWVf2U61NMMdSPcieO7ycWwGjh/view?usp=share_link" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
                                 <i class="fab fa-android mr-1"></i> Download APK
                             </a>
-                            <a href="https://github.com/Maybach-Zee/Bird-Quest-Application.git" target="_blank" rel="noopener" class="text-primary hover:text-secondary transition-colors text-sm">
+                            <a href="https://github.com/Maybach-Zee/Bird-Quest-Application.git" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
                                 <i class="fab fa-github mr-1"></i> Code
                             </a>
                         </div>
@@ -860,19 +857,19 @@
             
             <!-- Stats Section -->
             <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="animated-element">
+                <div class="animate-slide-up">
                     <div class="font-heading font-bold text-3xl text-primary mb-2">15+</div>
                     <div class="text-muted-foreground">Technologies</div>
                 </div>
-                <div class="animated-element">
+                <div class="animate-slide-up">
                     <div class="font-heading font-bold text-3xl text-primary mb-2">1+</div>
                     <div class="text-muted-foreground">Years Experience</div>
                 </div>
-                <div class="animated-element">
+                <div class="animate-slide-up">
                     <div class="font-heading font-bold text-3xl text-primary mb-2">5+</div>
                     <div class="text-muted-foreground">Projects Completed</div>
                 </div>
-                <div class="animated-element">
+                <div class="animate-slide-up">
                     <div class="font-heading font-bold text-3xl text-primary mb-2">6</div>
                     <div class="text-muted-foreground">Specializations</div>
                 </div>
@@ -880,10 +877,76 @@
         </div>
     </section>
 
+    <!-- Added new Documents section between Projects and Contact -->
+    <!-- Documents Section -->
+    <section id="documents" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="animate-slide-up">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Documents & Credentials</h2>
+                <p class="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+                    Download my professional documents and certifications
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- CV Download -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
+                    <div class="mb-6">
+                        <i class="fas fa-file-alt text-5xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-2xl text-card-foreground mb-4">Curriculum Vitae</h3>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Complete professional CV with detailed work experience, skills, and achievements. 
+                        Includes project portfolio and technical competencies.
+                    </p>
+                    <a href="https://drive.google.com/file/d/19elkJ9SHXLx2sgBrIxPOV5D98V7XaPcc/view?usp=share_link" 
+                       target="_blank" 
+                       rel="noopener"
+                       class="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 hover-lift">
+                        <i class="fas fa-download mr-2"></i>
+                        Download CV
+                    </a>
+                </div>
+                
+                <!-- Certificate Download -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
+                    <div class="mb-6">
+                        <i class="fas fa-certificate text-5xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-2xl text-card-foreground mb-4">IT Diploma Certificate</h3>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Diploma in Information Technology (Software Development) from Rosebank College. 
+                        Completed 2022-2024 with comprehensive training in full-stack development.
+                    </p>
+                    <a href="https://drive.google.com/file/d/1obpR2YpnrNru2lbAaHSJa0jUixMpdnM2/view?usp=share_link" 
+                       target="_blank" 
+                       rel="noopener"
+                       class="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 hover-lift">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Certificate
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="animate-slide-up bg-muted p-6 rounded-lg">
+                <h4 class="font-heading font-semibold text-lg text-foreground mb-3">
+                    <i class="fas fa-info-circle text-primary mr-2"></i>
+                    Document Information
+                </h4>
+                <p class="text-muted-foreground text-sm leading-relaxed">
+                    All documents are hosted securely on Google Drive and are regularly updated. 
+                    If you have any issues accessing the files or need alternative formats, 
+                    please don't hesitate to contact me directly.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="animated-element">
+            <div class="animate-slide-up">
                 <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Let's Connect</h2>
                 <p class="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
                     Find me on social platforms and let's build something amazing together
@@ -891,26 +954,26 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <a href="https://www.linkedin.com/in/zwivhuya-madzivhandila-445979247/" target="_blank" rel="noopener" class="bg-card p-8 rounded-lg hover-lift animated-element group">
+                <a href="https://www.linkedin.com/in/zwivhuya-madzivhandila-445979247/" target="_blank" class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
                     <i class="fab fa-linkedin text-4xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
                     <h3 class="font-heading font-semibold text-xl text-card-foreground mb-2">LinkedIn</h3>
                     <p class="text-muted-foreground text-sm">Professional networking and career updates</p>
                 </a>
                 
-                <a href="https://github.com/Maybach-Zee" target="_blank" rel="noopener" class="bg-card p-8 rounded-lg hover-lift animated-element group">
+                <a href="https://github.com/Maybach-Zee" target="_blank" class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
                     <i class="fab fa-github text-4xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
                     <h3 class="font-heading font-semibold text-xl text-card-foreground mb-2">GitHub</h3>
                     <p class="text-muted-foreground text-sm">Explore my code repositories and contributions</p>
                 </a>
                 
-                <a href="mailto:maybachzee@gmail.com" class="bg-card p-8 rounded-lg hover-lift animated-element group">
+                <a href="mailto:maybachzee@gmail.com" class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
                     <i class="fas fa-envelope text-4xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
                     <h3 class="font-heading font-semibold text-xl text-card-foreground mb-2">Email</h3>
                     <p class="text-muted-foreground text-sm">Direct communication for opportunities</p>
                 </a>
             </div>
             
-            <div class="animated-element">
+            <div class="animate-slide-up">
                 <p class="text-muted-foreground mb-4">
                     <i class="fas fa-phone mr-2"></i>067 843 6627
                 </p>
@@ -939,29 +1002,29 @@
                 </div>
                 <!-- Updated header structure with better styling -->
                 <div class="chatbot-info">
-                    <h3>ZeeBot</h3>
+                    <h3>Aiden</h3>
                     <p>Your AI assistant for Zwivhuya's portfolio</p>
                 </div>
             </div>
             <div class="chatbot-messages" id="chatbot-messages">
                 <div class="message bot">
-                    👋 Hi! I'm ZeeBot, Zwivhuya's AI assistant. Ask me anything about his skills, projects, or experience!
+                    👋 Hi! I'm Aiden, Zwivhuya's AI assistant. Ask me anything about his skills, projects, or experience!
                 </div>
             </div>
             <div class="suggestion-buttons" id="suggestion-buttons">
                 <!-- Reduced suggestion buttons to only 3 as requested -->
-                <button class="suggestion-btn" onclick="askSuggestion('Can I download your CV?')" aria-label="Download CV">📄 Download CV</button>
-                <button class="suggestion-btn" onclick="askSuggestion('What are your skills?')" aria-label="View Skills">💻 Skills</button>
-                <button class="suggestion-btn" onclick="askSuggestion('Show me your projects')" aria-label="View Projects">🚀 Projects</button>
+                <button class="suggestion-btn" onclick="askSuggestion('Can I download your CV?')">📄 Download CV</button>
+                <button class="suggestion-btn" onclick="askSuggestion('What are your skills?')">💻 Skills</button>
+                <button class="suggestion-btn" onclick="askSuggestion('Show me your projects')">🚀 Projects</button>
             </div>
             <div class="chatbot-input">
                 <input type="text" id="chatbot-input" placeholder="Ask me about Zwivhuya..." maxlength="200">
-                <button class="send-btn" id="send-btn" aria-label="Send message">
+                <button class="send-btn" id="send-btn">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
         </div>
-        <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open chatbot">
+        <button class="chatbot-toggle" id="chatbot-toggle">
             <i class="fas fa-robot"></i>
         </button>
     </div>
@@ -1013,7 +1076,10 @@
         }, observerOptions);
         
         // Observe all animated elements
-        document.querySelectorAll('.animated-element').forEach(el => {
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(el);
         });
         
@@ -1127,15 +1193,17 @@
             const message = userMessage.toLowerCase();
             
             if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-                return `Hello! I'm ZeeBot, ${zwivhuyaInfo.name}'s AI assistant. I can help you learn about his skills, projects, education, and even provide his CV and certificates for download. How can I help you?`;
+                return `Hello! I'm Aiden, ${zwivhuyaInfo.name}'s AI assistant. I can help you learn about his skills, projects, education, and even provide his CV and certificates for download. How can I help you?`;
             }
             
             if (message.toLowerCase().includes('cv') || message.toLowerCase().includes('resume') || message.toLowerCase().includes('download')) {
-                return "📄 You can download Zwivhuya's CV here: 'https://drive.google.com/file/d/1example/view' \n\n📜 You can also download his certificate here: 'https://drive.google.com/file/d/1certificate/view' \n\nBoth documents contain detailed information about his qualifications, experience, and achievements!";
+                <!-- Updated chatbot response to direct users to documents section -->
+                return "📄 You can find my CV and certificate in the Documents section of this website! Just scroll up to the 'Documents & Credentials' section or click the Documents link in the navigation menu. Both files are available for direct download there.";
             }
             
             if (message.includes('certificate') || message.includes('certification') || message.includes('diploma')) {
-                return `🎓 You can download Zwivhuya's certificate here:\n<a href="${zwivhuyaInfo.documents.certificate}" target="_blank" rel="noopener">Download Certificate</a>\n\nHe has a Diploma in Information Technology (Software Development) from Rosebank College (2022-2024) and completed Grade 12 at Thohoyandou Technical High School in 2021.`;
+                
+                return "🎓 My IT Diploma certificate is available in the Documents section above! I have a Diploma in Information Technology (Software Development) from Rosebank College (2022-2024) and completed Grade 12 at Thohoyandou Technical High School in 2021. You can download the certificate directly from the Documents section.";
             }
             
             if (message.includes('education') || message.includes('school') || message.includes('college') || message.includes('study')) {
@@ -1211,7 +1279,7 @@
             }
             
             if (message.includes('hire') || message.includes('available') || message.includes('job') || message.includes('opportunity')) {
-                return `Yes! Zwivhuya is actively looking for opportunities as a Junior Full Stack Developer. He's passionate about frontend development and would love to contribute to your team. You can download his CV here:\n<a href="${zwivhuyaInfo.documents.cv}" target="_blank" rel="noopener">Download CV</a>\n\nOr reach out to him directly!`;
+                return `Yes! Zwivhuya is actively looking for opportunities as a Junior Full Stack Developer. He's passionate about frontend development and would love to contribute to your team. You can download his CV here:\n<a href="${zwivhuyaInfo.documents.cv}" target="_blank">Download CV</a>\n\nOr reach out to him directly!`;
             }
             
             if (message.includes('thank') || message.includes('thanks')) {
@@ -1315,6 +1383,22 @@
             if (!chatbotToggle.contains(e.target) && !chatbotWindow.contains(e.target)) {
                 chatbotWindow.style.display = 'none';
             }
+        });
+
+        const suggestions = [
+            "Tell me about your skills",
+            "What projects have you worked on?"
+        ];
+
+        // Initial suggestion buttons
+        const suggestionButtons = document.getElementById('suggestion-buttons');
+        suggestionButtons.innerHTML = '';
+        suggestions.forEach(suggestion => {
+            const button = document.createElement('button');
+            button.className = 'suggestion-btn';
+            button.textContent = suggestion;
+            button.onclick = () => askSuggestion(suggestion);
+            suggestionButtons.appendChild(button);
         });
     </script>
 </body>
