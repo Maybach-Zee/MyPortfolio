@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwivhuya Vision Madzivhandila | Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Zwivhuya Vision Madzivhandila - Junior Full Stack Developer specializing in React.js, Node.js, and modern web technologies.">
+    <link rel="icon" href="/placeholder.svg?height=32&width=32" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#ffffff',
+                        foreground: '#475569',
+                        card: '#ecfeff',
+                        'card-foreground': '#374151',
+                        primary: '#164e63',
+                        'primary-foreground': '#ffffff',
+                        secondary: '#84cc16',
+                        'secondary-foreground': '#ffffff',
+                        muted: '#f0fdf4',
+                        'muted-foreground': '#374151',
+                        accent: '#84cc16',
+                        'accent-foreground': '#ffffff',
+                        border: '#e2e8f0'
+                    },
+                    fontFamily: {
+                        'heading': ['Work Sans', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adding geometric background effects */
+        .geometric-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 43px solid #164e63;
+            animation: float-triangle 15s infinite ease-in-out;
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #164e63, #84cc16);
+            animation: float-circle 20s infinite ease-in-out;
+        }
+
+        .square {
+            width: 40px;
+            height: 40px;
+            background: #84cc16;
+            transform: rotate(45deg);
+            animation: float-square 18s infinite ease-in-out;
+        }
+
+        .hexagon {
+            width: 50px;
+            height: 28.87px;
+            background: #164e63;
+            position: relative;
+            animation: float-hexagon 22s infinite ease-in-out;
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 14.43px solid #164e63;
+        }
+
+        .hexagon:after {
+            top: 100%;
+            border-top: 14.43px solid #164e63;
+        }
+
+        @keyframes float-triangle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-30px) rotate(270deg); }
+        }
+
+        @keyframes float-circle {
+            0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
+            33% { transform: translateX(30px) translateY(-20px) scale(1.1); }
+            66% { transform: translateX(-20px) translateY(-15px) scale(0.9); }
+        }
+
+        @keyframes float-square {
+            0%, 100% { transform: rotate(45deg) translateY(0px); }
+            50% { transform: rotate(225deg) translateY(-25px); }
+        }
+
+        @keyframes float-hexagon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-35px) rotate(180deg); }
+        }
+
+        /* Updated chatbot UI to use white and grey color scheme instead of green */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(71, 85, 105, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(71, 85, 105, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .chatbot-toggle:hover::before {
+            left: 100%;
+        }
+
+        .chatbot-toggle:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(71, 85, 105, 0.4);
+            border-color: rgba(148, 163, 184, 0.6);
+        }
+
+        .chatbot-toggle i {
+            color: #94a3b8;
+            font-size: 28px;
+            z-index: 1;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 380px;
+            height: 550px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, rgba(71, 85, 105, 0.9), rgba(148, 163, 184, 0.8));
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .robot-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .chatbot-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .chatbot-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .chatbot-info p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin: 2px 0 0 0;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: rgba(248, 250, 252, 0.5);
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: rgba(71, 85, 105, 0.3);
+            border-radius: 3px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 16px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+            position: relative;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: rgba(71, 85, 105, 0.1);
+            border: 1px solid rgba(71, 85, 105, 0.2);
+            color: #1e293b;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #475569, #64748b);
+            color: white;
+            box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
+        }
+
+        .message a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            display: inline-block;
+            margin: 4px 0;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .message a:hover {
+            background: rgba(148, 163, 184, 0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.2);
+        }
+
+        .message.user a {
+            color: #94a3b8;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .suggestion-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 24px 20px 24px;
+            padding: 20px;
+            background: rgba(148, 163, 184, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .suggestion-btn {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #475569;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .suggestion-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .suggestion-btn:hover::before {
+            left: 100%;
+        }
+
+        .suggestion-btn:hover {
+            background: rgba(148, 163, 184, 0.1);
+            color: #475569;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(148, 163, 184, 0.2);
+            border-color: rgba(148, 163, 184, 0.5);
+        }
+
+        .chatbot-input {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+            display: flex;
+            gap: 12px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid rgba(71, 85, 105, 0.1);
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input input:focus {
+            border-color: rgba(148, 163, 184, 0.5);
+            box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.1);
+        }
+
+        .send-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #475569, #64748b);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
+        }
+
+        .send-btn:hover {
+            background: linear-gradient(135deg, #64748b, #94a3b8);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(71, 85, 105, 0.4);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 6px;
+            padding: 16px 20px;
+            align-items: center;
+        }
+
+        .typing-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #475569;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: 340px;
+                height: 500px;
+                right: -10px;
+            }
+            
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body class="font-body bg-background text-foreground">
+    <!-- Adding geometric background -->
+    <div class="geometric-bg">
+        <div class="geometric-shape triangle" style="top: 10%; left: 5%;"></div>
+        <div class="geometric-shape circle" style="top: 20%; right: 10%;"></div>
+        <div class="geometric-shape square" style="top: 60%; left: 8%;"></div>
+        <div class="geometric-shape hexagon" style="top: 80%; right: 15%;"></div>
+        <div class="geometric-shape triangle" style="top: 40%; right: 5%;"></div>
+        <div class="geometric-shape circle" style="top: 70%; left: 15%;"></div>
+        <div class="geometric-shape square" style="top: 15%; left: 20%;"></div>
+        <div class="geometric-shape hexagon" style="top: 50%; right: 20%;"></div>
+        <div class="geometric-shape triangle" style="top: 25%; left: 50%;"></div>
+        <div class="geometric-shape circle" style="top: 85%; right: 40%;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="font-heading font-bold text-xl text-primary">
+                    Zwivhuya Madzivhandila
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-foreground hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-foreground hover:text-primary transition-colors duration-300">About</a>
+                    <a href="#skills" class="text-foreground hover:text-primary transition-colors duration-300">Skills</a>
+                    <a href="#projects" class="text-foreground hover:text-primary transition-colors duration-300">Projects</a>
+                    <a href="#contact" class="text-foreground hover:text-primary transition-colors duration-300">Contact</a>
+                </div>
+                
+                <button class="md:hidden text-foreground" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-4 pb-4 hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-foreground hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-foreground hover:text-primary transition-colors duration-300">About</a>
+                    <a href="#skills" class="text-foreground hover:text-primary transition-colors duration-300">Skills</a>
+                    <a href="#projects" class="text-foreground hover:text-primary transition-colors duration-300">Projects</a>
+                    <a href="#contact" class="text-foreground hover:text-primary transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <div class="mb-8">
+                <img src="zee.png" 
+                     alt="Zwivhuya Vision Madzivhandila" 
+                     class="w-48 h-48 rounded-full mx-auto mb-8 shadow-lg hover-lift">
+            </div>
+            
+            <h1 class="font-heading font-bold text-5xl md:text-7xl text-foreground mb-6">
+                Hey, I'm <span class="text-primary">Zwivhuya</span> 👋
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Junior Full Stack Developer
+            </p>
+            
+            <p class="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+                Motivated Junior Full Stack Developer with a strong preference for frontend development. 
+                Skilled in crafting responsive, user-friendly web and mobile applications using modern 
+                frameworks such as React.js and Kotlin.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#projects" class="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 hover-lift">
+                    View My Work
+                </a>
+                <a href="#contact" class="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">About Me</h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Passionate about creating beautiful, functional, and user-centered digital experiences
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h3 class="font-heading font-semibold text-2xl text-foreground mb-6">Passionate Developer</h3>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        I'm a dedicated junior full stack developer with a passion for creating beautiful, 
+                        functional, and user-centered digital experiences. My journey in web development 
+                        started with a curiosity about how things work, which evolved into a deep love 
+                        for coding and problem-solving.
+                    </p>
+                    <p class="text-muted-foreground leading-relaxed">
+                        I specialize in frontend development but have solid backend skills that allow me 
+                        to build complete web applications. I'm always eager to learn new technologies 
+                        and stay up-to-date with industry trends.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 animate-slide-up">
+                    <div class="bg-card p-6 rounded-lg hover-lift">
+                        <i class="fab fa-react text-3xl text-primary mb-4"></i>
+                        <h4 class="font-heading font-semibold text-lg text-card-foreground mb-2">Frontend</h4>
+                        <p class="text-sm text-muted-foreground">React.js, HTML5, CSS3, JavaScript</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-lg hover-lift">
+                        <i class="fas fa-server text-3xl text-primary mb-4"></i>
+                        <h4 class="font-heading font-semibold text-lg text-card-foreground mb-2">Backend</h4>
+                        <p class="text-sm text-muted-foreground">Node.js, Java, C#, PHP</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-lg hover-lift">
+                        <i class="fas fa-mobile-alt text-3xl text-primary mb-4"></i>
+                        <h4 class="font-heading font-semibold text-lg text-card-foreground mb-2">Mobile</h4>
+                        <p class="text-sm text-muted-foreground">Android, Kotlin, Firebase</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-lg hover-lift">
+                        <i class="fas fa-database text-3xl text-primary mb-4"></i>
+                        <h4 class="font-heading font-semibold text-lg text-card-foreground mb-2">Database</h4>
+                        <p class="text-sm text-muted-foreground">SQL, Oracle, MongoDB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Skills & Expertise</h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Technologies and tools I use to build innovative solutions
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Frontend Development -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-laptop-code text-3xl text-primary mr-4"></i>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground">Frontend Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">React.js</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">HTML5</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">CSS3</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Responsive Design</span>
+                    </div>
+                </div>
+                
+                <!-- Backend Development -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-server text-3xl text-primary mr-4"></i>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground">Backend Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">PHP</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">C#</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">RESTful APIs</span>
+                    </div>
+                </div>
+                
+                <!-- Mobile Development -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-mobile-alt text-3xl text-primary mr-4"></i>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground">Mobile Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Android</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Kotlin</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Firebase</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Mobile UI/UX</span>
+                    </div>
+                </div>
+                
+                <!-- Database Management -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-database text-3xl text-primary mr-4"></i>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground">Database Management</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">SQL</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Oracle</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">MongoDB</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Query Optimization</span>
+                    </div>
+                </div>
+                
+                <!-- DevOps & Tools -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-tools text-3xl text-primary mr-4"></i>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground">DevOps & Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Azure DevOps</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">CI/CD</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Git</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Agile</span>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="bg-card p-8 rounded-lg hover-lift animate-slide-up">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-brain text-3xl text-primary mr-4"></i>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground">Soft Skills</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Problem Solving</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Team Work</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Communication</span>
+                        <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm">Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Featured Projects</h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Showcasing my development journey through real-world applications
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- SANDF Gaming Website -->
+                <div class="bg-card rounded-lg overflow-hidden hover-lift animate-slide-up">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm font-semibold">🌟 Latest</span>
+                            <span class="text-sm text-muted-foreground">2025</span>
+                        </div>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground mb-3">SANDF Gaming Website</h3>
+                        <p class="text-muted-foreground mb-4 text-sm leading-relaxed">
+                            Responsive gaming community website with interactive features and modern UI/UX design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">HTML5</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">CSS3</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">JavaScript</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Email JS</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://sandf-c7d24.firebaseapp.com" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Maybach-Zee/SANDF-Clan.git" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Premium Watch Collection App -->
+                <div class="bg-card rounded-lg overflow-hidden hover-lift animate-slide-up">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">Mobile</span>
+                            <span class="text-sm text-muted-foreground">2024</span>
+                        </div>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground mb-3">Premium Watch Collection</h3>
+                        <p class="text-muted-foreground mb-4 text-sm leading-relaxed">
+                            Android app for luxury watch enthusiasts to organize and manage their collections.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Kotlin</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Android</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Firebase</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://drive.google.com/file/d/1fkLAZ4qhyQes9rBv28bDrV0JWrE-UrkW/view?usp=share_link" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
+                                <i class="fab fa-android mr-1"></i> Download APK
+                            </a>
+                            <a href="https://github.com/Maybach-Zee/Premium-Watch-Android-Application.git" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- BirdQuest App -->
+                <div class="bg-card rounded-lg overflow-hidden hover-lift animate-slide-up">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">Mobile</span>
+                            <span class="text-sm text-muted-foreground">2024</span>
+                        </div>
+                        <h3 class="font-heading font-semibold text-xl text-card-foreground mb-3">BirdQuest - Birdwatching App</h3>
+                        <p class="text-muted-foreground mb-4 text-sm leading-relaxed">
+                            Native Android app with real-time GPS tracking and interactive mapping for birdwatchers.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Kotlin</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Firebase</span>
+                            <span class="bg-border text-foreground px-2 py-1 rounded text-xs">Mapbox</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://drive.google.com/file/d/1PcWa-FOWVf2U61NMMdSPcieO7ycWwGjh/view?usp=share_link" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
+                                <i class="fab fa-android mr-1"></i> Download APK
+                            </a>
+                            <a href="https://github.com/Maybach-Zee/Bird-Quest-Application.git" target="_blank" class="text-primary hover:text-secondary transition-colors text-sm">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="animate-slide-up">
+                    <div class="font-heading font-bold text-3xl text-primary mb-2">15+</div>
+                    <div class="text-muted-foreground">Technologies</div>
+                </div>
+                <div class="animate-slide-up">
+                    <div class="font-heading font-bold text-3xl text-primary mb-2">1+</div>
+                    <div class="text-muted-foreground">Years Experience</div>
+                </div>
+                <div class="animate-slide-up">
+                    <div class="font-heading font-bold text-3xl text-primary mb-2">5+</div>
+                    <div class="text-muted-foreground">Projects Completed</div>
+                </div>
+                <div class="animate-slide-up">
+                    <div class="font-heading font-bold text-3xl text-primary mb-2">6</div>
+                    <div class="text-muted-foreground">Specializations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="animate-slide-up">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">Let's Connect</h2>
+                <p class="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+                    Find me on social platforms and let's build something amazing together
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <a href="https://www.linkedin.com/in/zwivhuya-madzivhandila-445979247/" target="_blank" class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
+                    <i class="fab fa-linkedin text-4xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
+                    <h3 class="font-heading font-semibold text-xl text-card-foreground mb-2">LinkedIn</h3>
+                    <p class="text-muted-foreground text-sm">Professional networking and career updates</p>
+                </a>
+                
+                <a href="https://github.com/Maybach-Zee" target="_blank" class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
+                    <i class="fab fa-github text-4xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
+                    <h3 class="font-heading font-semibold text-xl text-card-foreground mb-2">GitHub</h3>
+                    <p class="text-muted-foreground text-sm">Explore my code repositories and contributions</p>
+                </a>
+                
+                <a href="mailto:maybachzee@gmail.com" class="bg-card p-8 rounded-lg hover-lift animate-slide-up group">
+                    <i class="fas fa-envelope text-4xl text-primary mb-4 group-hover:text-secondary transition-colors"></i>
+                    <h3 class="font-heading font-semibold text-xl text-card-foreground mb-2">Email</h3>
+                    <p class="text-muted-foreground text-sm">Direct communication for opportunities</p>
+                </a>
+            </div>
+            
+            <div class="animate-slide-up">
+                <p class="text-muted-foreground mb-4">
+                    <i class="fas fa-phone mr-2"></i>067 843 6627
+                </p>
+                <p class="text-muted-foreground">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Pretoria, South Africa
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-card py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-muted-foreground">
+                © 2025 Zwivhuya Vision Madzivhandila. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Adding chatbot widget -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="robot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <!-- Updated header structure with better styling -->
+                <div class="chatbot-info">
+                    <h3>ZeeBot</h3>
+                    <p>Your AI assistant for Zwivhuya's portfolio</p>
+                </div>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    👋 Hi! I'm ZeeBot, Zwivhuya's AI assistant. Ask me anything about his skills, projects, or experience!
+                </div>
+            </div>
+            <div class="suggestion-buttons" id="suggestion-buttons">
+                <!-- Reduced suggestion buttons to only 3 as requested -->
+                <button class="suggestion-btn" onclick="askSuggestion('Can I download your CV?')">📄 Download CV</button>
+                <button class="suggestion-btn" onclick="askSuggestion('What are your skills?')">💻 Skills</button>
+                <button class="suggestion-btn" onclick="askSuggestion('Show me your projects')">🚀 Projects</button>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Ask me about Zwivhuya..." maxlength="200">
+                <button class="send-btn" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbot-toggle">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+        
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary');
+                link.classList.add('text-foreground');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-foreground');
+                    link.classList.add('text-primary');
+                }
+            });
+        });
+
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Zwivhuya's information for the chatbot
+        const zwivhuyaInfo = {
+            name: "Zwivhuya Vision Madzivhandila",
+            role: "Junior Full Stack Developer",
+            location: "Pretoria, South Africa",
+            phone: "067 843 6627 / 064 163 7269",
+            email: "visionzwivhuya@gmail.com",
+            linkedin: "https://www.linkedin.com/in/zwivhuya-madzivhandila-445979247/",
+            github: "https://github.com/Maybach-Zee",
+            
+            education: {
+                diploma: "Diploma in Information Technology (Software Development) - Rosebank College (2022-2024)",
+                matric: "Grade 12 - Thohoyandou Technical High School (2021)"
+            },
+            
+            professionalSummary: "Motivated Junior Full Stack Developer with a strong preference for frontend development. Skilled in crafting responsive, user-friendly web and mobile applications using modern frameworks such as React.js and Kotlin. Experienced in backend development with Node.js and database management using SQL and Oracle. Familiar with cloud platforms like Azure, CI/CD pipelines, and API integrations.",
+            
+            skills: {
+                frontend: ["React.js", "HTML5", "CSS", "JavaScript", "Responsive Design"],
+                backend: ["Node.js", "PHP", "Java", "C#", "Kotlin"],
+                database: ["SQL", "Oracle (Advanced Databases)", "Query Optimization", "Stored Procedures", "Performance Tuning"],
+                mobile: ["Android (Kotlin)", "Firebase", "Mobile UI/UX"],
+                cloud: ["Azure DevOps", "CI/CD Pipelines", "Version Control"],
+                api: ["RESTful API Integration", "API Development"],
+                soft: ["Problem Solving", "Critical Thinking", "Agile Development", "Team Collaboration"]
+            },
+            
+            projects: [
+                {
+                    name: "SANDF Website",
+                    year: "2025",
+                    type: "Personal Project",
+                    description: "Designed and developed responsive websites for gaming group using HTML/CSS/JavaScript and Email JS. Helped improve digital visibility for the gaming community.",
+                    technologies: ["HTML5", "CSS3", "JavaScript", "Email JS"],
+                    demo: "https://sandf-c7d24.firebaseapp.com",
+                    github: "https://github.com/Maybach-Zee/SANDF-Clan.git"
+                },
+                {
+                    name: "WebAfri – Digital Solutions",
+                    year: "2024",
+                    type: "Coursework Project",
+                    description: "Created responsive websites for businesses and individuals, enhancing digital presence.",
+                    technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"]
+                },
+                {
+                    name: "Gift of the Givers Foundation App",
+                    year: "2024",
+                    type: "Coursework Project",
+                    description: "Developed a web application to manage relief efforts, coordinate volunteers, and track resources with a clean UI and robust backend logic.",
+                    technologies: ["Full Stack Development", "Database Management", "UI/UX Design"]
+                },
+                {
+                    name: "BirdQuest – Birdwatching App",
+                    year: "2024",
+                    type: "Coursework Project",
+                    description: "Built an Android app using Kotlin, Firebase, and Mapbox to track birdwatching hotspots with real-time map tracking and a user-friendly interface.",
+                    technologies: ["Kotlin", "Firebase", "Mapbox", "Android Development"],
+                    github: "https://github.com/Maybach-Zee/Bird-Quest-Application.git"
+                },
+                {
+                    name: "Premium Watch Collection App",
+                    year: "2024",
+                    description: "Android app for luxury watch enthusiasts to organize and manage their collections",
+                    technologies: ["Kotlin", "Android", "Firebase"],
+                    github: "https://github.com/Maybach-Zee/Premium-Watch-Android-Application.git"
+                }
+            ],
+            
+            documents: {
+                cv: "https://drive.google.com/file/d/19elkJ9SHXLx2sgBrIxPOV5D98V7XaPcc/view?usp=share_link",
+                certificate: "https://drive.google.com/file/d/1obpR2YpnrNru2lbAaHSJa0jUixMpdnM2/view?usp=share_link"
+            },
+            
+            about: "Motivated Junior Full Stack Developer with a strong preference for frontend development. Skilled in crafting responsive, user-friendly web and mobile applications using modern frameworks such as React.js and Kotlin. Passionate about creating beautiful, functional, and user-centered digital experiences."
+        };
+
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return `Hello! I'm ZeeBot, ${zwivhuyaInfo.name}'s AI assistant. I can help you learn about his skills, projects, education, and even provide his CV and certificates for download. How can I help you?`;
+            }
+            
+            if (message.toLowerCase().includes('cv') || message.toLowerCase().includes('resume') || message.toLowerCase().includes('download')) {
+                return "📄 You can download Zwivhuya's CV here: 'https://drive.google.com/file/d/1example/view' \n\n📜 You can also download his certificate here: 'https://drive.google.com/file/d/1certificate/view' \n\nBoth documents contain detailed information about his qualifications, experience, and achievements!";
+            }
+            
+            if (message.includes('certificate') || message.includes('certification') || message.includes('diploma')) {
+                return `🎓 You can download Zwivhuya's certificate here:\n<a href="${zwivhuyaInfo.documents.certificate}" target="_blank">Download Certificate</a>\n\nHe has a Diploma in Information Technology (Software Development) from Rosebank College (2022-2024) and completed Grade 12 at Thohoyandou Technical High School in 2021.`;
+            }
+            
+            if (message.includes('education') || message.includes('school') || message.includes('college') || message.includes('study')) {
+                return `🎓 Zwivhuya's Educational Background:\n\n• ${zwivhuyaInfo.education.diploma}\n• ${zwivhuyaInfo.education.matric}\n\nHe specialized in Software Development and has hands-on experience with modern technologies. Would you like to download his certificate?`;
+            }
+            
+            if (message.includes('database') || message.includes('sql') || message.includes('oracle')) {
+                return `💾 Zwivhuya has advanced database experience!\n\nHe's skilled in:\n• SQL and Oracle (Advanced Databases)\n• Stored procedures and performance tuning\n• Query optimization\n• Database design and management\n\nHe worked extensively with Oracle during his studies and has hands-on experience in designing and optimizing complex databases.`;
+            }
+            
+            if (message.includes('name')) {
+                return `His full name is ${zwivhuyaInfo.name}, but you can call him Zwivhuya or Zee!`;
+            }
+            
+            if (message.includes('skill') || message.includes('technology') || message.includes('tech')) {
+                return `Zwivhuya has expertise in multiple areas:\n\n🎨 Frontend: ${zwivhuyaInfo.skills.frontend.join(', ')}\n\n⚙️ Backend: ${zwivhuyaInfo.skills.backend.join(', ')}\n\n📱 Mobile: ${zwivhuyaInfo.skills.mobile.join(', ')}\n\n☁️ Cloud & DevOps: ${zwivhuyaInfo.skills.cloud.join(', ')}\n\nWhat specific technology would you like to know more about?`;
+            }
+            
+            if (message.includes('project') || message.includes('work') || message.includes('portfolio')) {
+                const projectList = zwivhuyaInfo.projects.map(p => 
+                    `• ${p.name} (${p.year}) - ${p.description}`
+                ).join('\n\n');
+                return `Here are Zwivhuya's featured projects:\n\n${projectList}\n\nWould you like more details about any specific project or want to download his full CV for complete project descriptions?`;
+            }
+            
+            if (message.includes('gift of the givers') || message.includes('foundation')) {
+                const project = zwivhuyaInfo.projects.find(p => p.name.includes('Gift of the Givers'));
+                return `${project.name} (${project.year}) - ${project.description}\n\nThis was a ${project.type.toLowerCase()} that showcased his full-stack development capabilities and social impact focus.`;
+            }
+            
+            if (message.includes('webafri') || message.includes('digital solutions')) {
+                const project = zwivhuyaInfo.projects.find(p => p.name.includes('WebAfri'));
+                return `${project.name} (${project.year}) - ${project.description}\n\nThis ${project.type.toLowerCase()} demonstrated his ability to create professional websites for businesses and enhance their digital presence.`;
+            }
+            
+            if (message.includes('sandf') || message.includes('gaming')) {
+                const project = zwivhuyaInfo.projects[0];
+                return `${project.name} is his latest ${project.type.toLowerCase()}! ${project.description}\n\nBuilt with ${project.technologies.join(', ')}. You can check it out at ${project.demo}`;
+            }
+            
+            if (message.includes('watch') || message.includes('premium')) {
+                const project = zwivhuyaInfo.projects.find(p => p.name.includes('Premium Watch'));
+                return `The ${project.name} (${project.year}) is an ${project.description.toLowerCase()}. It's built using ${project.technologies.join(', ')} and showcases his mobile development skills!`;
+            }
+            
+            if (message.includes('bird') || message.includes('birdquest')) {
+                const project = zwivhuyaInfo.projects.find(p => p.name.includes('BirdQuest'));
+                return `${project.name} (${project.year}) - ${project.description}\n\nThis ${project.type.toLowerCase()} demonstrates his expertise in ${project.technologies.join(', ')} and location-based services!`;
+            }
+            
+            if (message.includes('contact') || message.includes('email') || message.includes('phone') || message.includes('reach')) {
+                return `You can reach Zwivhuya through:\n\n📧 Email: ${zwivhuyaInfo.email}\n📱 Phone: ${zwivhuyaInfo.phone}\n💼 LinkedIn: ${zwivhuyaInfo.linkedin}\n💻 GitHub: ${zwivhuyaInfo.github}`;
+            }
+            
+            if (message.includes('location') || message.includes('where') || message.includes('live')) {
+                return `Zwivhuya is based in ${zwivhuyaInfo.location}. He's available for both local and remote opportunities!`;
+            }
+            
+            if (message.includes('experience') || message.includes('background') || message.includes('about') || message.includes('summary')) {
+                return zwivhuyaInfo.professionalSummary + "\n\nHe has experience across the development lifecycle, from UI design to deployment, and is looking to contribute to innovative software projects.";
+            }
+            
+            if (message.includes('react') || message.includes('javascript') || message.includes('frontend')) {
+                return `Zwivhuya specializes in frontend development! He's proficient in React.js, JavaScript, HTML5, CSS3, and responsive design. He loves creating beautiful, user-friendly interfaces and has a strong preference for frontend work.`;
+            }
+            
+            if (message.includes('mobile') || message.includes('android') || message.includes('kotlin')) {
+                return `Zwivhuya has strong mobile development skills! He builds Android apps using Kotlin and Firebase. Check out his Premium Watch Collection and BirdQuest apps to see his mobile expertise in action.`;
+            }
+            
+            if (message.includes('azure') || message.includes('devops') || message.includes('cloud')) {
+                return `Zwivhuya has experience with cloud platforms and DevOps! He's familiar with Azure DevOps, CI/CD pipelines, and version control. He understands the importance of proper deployment and development workflows.`;
+            }
+            
+            if (message.includes('hire') || message.includes('available') || message.includes('job') || message.includes('opportunity')) {
+                return `Yes! Zwivhuya is actively looking for opportunities as a Junior Full Stack Developer. He's passionate about frontend development and would love to contribute to your team. You can download his CV here:\n<a href="${zwivhuyaInfo.documents.cv}" target="_blank">Download CV</a>\n\nOr reach out to him directly!`;
+            }
+            
+            if (message.includes('thank') || message.includes('thanks')) {
+                return `You're welcome! Feel free to ask me anything else about Zwivhuya's skills, projects, education, or experience. I can also provide his CV and certificate downloads anytime! 😊`;
+            }
+            
+            // Default response
+            return `I'd be happy to help you learn more about Zwivhuya! You can ask me about:\n\n• His skills and technologies\n• His projects and portfolio\n• His education and certificates\n• His contact information\n• CV and certificate downloads\n• His experience and background\n• Hiring opportunities\n\nWhat would you like to know?`;
+        }
+
+        function askSuggestion(question) {
+            chatbotInput.value = question;
+            sendMessage();
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            // Check if text contains HTML links
+            if (text.includes('<a href=')) {
+                messageDiv.innerHTML = text;
+            } else {
+                messageDiv.textContent = text;
+            }
+            
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            
+            if (sender === 'user') {
+                document.getElementById('suggestion-buttons').style.display = 'none';
+            }
+        }
+
+        // Toggle chatbot
+        chatbotToggle.addEventListener('click', () => {
+            const isVisible = chatbotWindow.style.display === 'flex';
+            chatbotWindow.style.display = isVisible ? 'none' : 'flex';
+            
+            if (!isVisible) {
+                chatbotInput.focus();
+            }
+        });
+
+        // Send message function
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatbotInput.value = '';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Get bot response after delay
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 1000 + Math.random() * 1000);
+        }
+
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot typing-indicator';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            chatbotMessages.appendChild(typingDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Close chatbot when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!chatbotToggle.contains(e.target) && !chatbotWindow.contains(e.target)) {
+                chatbotWindow.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
